@@ -1,0 +1,66 @@
+Setup w/ ASK CLI
+About
+This readme assumes you have your developer environment ready to go and that you have some familiarity with CLI (Command Line Interface) Tools, AWS, and the ASK Developer Portal. If not, click here for a more detailed walkthrough.
+
+Pre-requisites
+Node.js (> v8)
+Register for an AWS Account
+Register for an Amazon Developer Account
+Install and Setup ASK CLI
+Installation
+Make sure you are running the latest version of the CLI
+
+$ npm update -g ask-cli
+Clone the repository.
+
+$ git clone https://github.com/alexa/skill-sample-nodejs-hello-world
+If it's your first time using it, initialize the ASK CLI by navigating into the repository and running npm command: ask init. Follow the prompts.
+
+$ cd skill-sample-nodejs-hello-world
+$ ask init
+Install npm dependencies by navigating into the /lambda/custom directory and running the npm command: npm install
+
+$ cd lambda/custom
+$ npm install
+Deployment
+ASK CLI will create the skill and the Lambda function for you. The Lambda function will be created in us-east-1 (Northern Virginia) by default.
+
+Navigate to the project's root directory. you should see a file named 'skill.json' there.
+
+Deploy the skill and the Lambda function in one step by running the following command:
+
+$ ask deploy
+Testing
+To test, you need to login to Alexa Developer Console, and enable the "Test" switch on your skill from the "Test" Tab.
+
+Simulate verbal interaction with your skill through the command line (this might take a few moments) using the following example:
+
+ $ ask simulate -l en-US -t "start Hello World"
+
+ ✓ Simulation created for simulation id: 4a7a9ed8-94b2-40c0-b3bd-fb63d9887fa7
+◡ Waiting for simulation response{
+  "status": "SUCCESSFUL",
+  ...
+Once the "Test" switch is enabled, your skill can be tested on devices associated with the developer account as well. Speak to Alexa from any enabled device, from your browser at echosim.io, or through your Amazon Mobile App and say :
+
+Alexa, start hello world
+Customization
+./skill.json
+
+Change the skill name, example phrase, icons, testing instructions etc ...
+
+Remember than many information are locale-specific and must be changed for each locale (e.g. en-US, en-GB, de-DE, etc.)
+
+See the Skill Manifest Documentation for more information.
+
+./lambda/custom/index.js
+
+Modify messages, and data from the source code to customize the skill.
+
+./models/*.json
+
+Change the model definition to replace the invocation name and the sample phrase for each intent. Repeat the operation for each locale you are planning to support.
+
+Remember to re-deploy your skill and Lambda function for your changes to take effect.
+
+$ ask deploy
